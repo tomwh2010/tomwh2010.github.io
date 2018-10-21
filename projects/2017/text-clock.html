@@ -30,14 +30,58 @@ and is wrapped around the whole page content, except for the footer in this exam
 
   <!-- Blog entry -->
 
-      <section id="content" class="about">
-  <h2>About me</h2>  
-    <p>
-      I'm Tom Halvorsr&oslash;d</p>
-    <p>
-      This site is built using <a href="http://nanoc.ws">nanoc</a>, which is a great little tool for building a static website out of documents written in Markdown and the like. </p>
+      
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+      <h3>Text clock</h3>
+      <i><br/>April 1, 2017</i>
+    </div>
+<br/>	
+    <div class="w3-container">
+	
+		<strong>Tecnologies:</strong>
+			 Arduino&nbsp;  c++&nbsp;  electronics&nbsp; 
+	
+      <p><p>On my desk at work I have this cool text clock.</p>
 
-</section>
+<p><img src="/images/text_clock_by_ceiiular-d4u97d7.jpg" /></p>
+
+<!-- more -->
+<p>Important notes:</p>
+
+<p>RTC and LCD does not play nicely, so the code may seem a little long. That’s
+because I had to use U8G2_XXXX::drawStr which take const char as argument.</p>
+
+<p>Also the output is in norwegian. The code itself has enough comments where appropriate so
+that you can switch to your own language. Also for those who understand norwegian
+I had trouble finding a font that support norwegian characters; i.e. å.</p>
+
+<p>Components:</p>
+
+<ul>
+  <li>Picture frame</li>
+  <li>Arduino Uno</li>
+  <li>LCD</li>
+  <li>RTC</li>
+  <li>Switch</li>
+  <li>Wires</li>
+</ul>
+
+<p>Wiring:</p>
+
+<p>Code:</p>
+
+<p><a href="/code/textclock.ino">textclock.ino</a></p>
+</p>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+          <p><a class="w3-button w3-padding-large w3-white w3-border" href="/projects"><b>Back ...</b></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
 
 
 <!-- END BLOG ENTRIES -->
