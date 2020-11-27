@@ -25,3 +25,9 @@ a:hover {
 a:active {
   color: black;
 }
+
+div.code
+{
+  font-family: "Courier New", monospace;
+  white-space: pre;
+}

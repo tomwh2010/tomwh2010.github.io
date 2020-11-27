@@ -49,7 +49,7 @@ var BaseGame = (function () {
                 console.log("100");
             }
             if (this.rounds == 10000) {
-                this.output = "something wrong with the algorithm<br/>";
+                this.output = "something wrong with the algorithm\n\n";
                 break;
             }
             for (var i = 0; i < newmoves.length; i++) {
@@ -70,16 +70,18 @@ var BaseGame = (function () {
             }
         }
         if (done) {
-            this.output = "Game finished<br/><br/>";
-            this.output += this.display(currstate) + "<br/>";
-            this.output += "Moves:" + currmoves + "<br/>";
-            this.output += "# moves: " + currmoves.length / 2 + "<br/>";
+            this.output = "Game finished\n\n";
+            this.output += this.display(currstate) + "\n\n";
+            this.output += "Moves:" + currmoves + "\n\n";
+            this.output += "# moves: " + currmoves.length / 2 + "\n\n";
+            this.output += "# used states: " + this.usedstates.length + "\n\n";
         }
         else {
-            this.output = "Unsolvable?<br/>";
+            this.output = "Unsolvable?\n\n";
         }
         var t1 = performance.now();
-        this.output += "<br/>solve() tok " + (t1 - t0) + " milliseconds to complete.";
+        var diff = Math.round(((t1 - t0) + Number.EPSILON) * 100) / 100;
+        this.output += "\n\nsolve() tok " + diff + " milliseconds to complete.";
     };
     return BaseGame;
 }());

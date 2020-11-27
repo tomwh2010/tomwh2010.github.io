@@ -21,10 +21,10 @@ var Alphabet = (function (_super) {
         return _this;
     }
     Alphabet.prototype.display = function (state) {
-        var buffer = "Alphabet<br/>--------<br/>\n";
-        buffer += "Level length: " + this.level.length + "<br/>\n";
-        buffer += this.level + "<br/>\n";
-        buffer += state + "<br/>\n";
+        var buffer = "Alphabet\n--------\n";
+        buffer += "Level length: " + this.level.length + "\n\n";
+        buffer += this.level + "\n\n";
+        buffer += state + "\n\n";
         return buffer;
     };
     Alphabet.prototype.findmoves = function (state) {
