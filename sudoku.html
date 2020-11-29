@@ -16,8 +16,22 @@
         <a href="#" onclick="runSolver('086031479437805100910467538029178305158043726304650801865704913243509087790386254')">Simple one</a><br/>
         <a href="index.html">Back</a><br/>
         <div id="outputarea"></div>
+        <script>
+            var exports = {
+                "__esModule": true
+            };
+        </script>
         <script type="text/javascript" src="js/library.js"></script>
         <script type="text/javascript" src="js/basegame1.js"></script>
         <script type="text/javascript" src="js/sudoku.js"></script>
+        <script>
+            function runSolver(level) {
+                var sudo = new Sudoku(level);
+                document.getElementById("outputarea").innerHTML = "";
+                sudo.solve(1)
+                document.getElementById("outputarea").innerHTML = sudo.output;
+    
+            }
+        </script>
     </body>
 </html>

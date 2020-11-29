@@ -44,8 +44,8 @@ var Alphabet = (function (_super) {
     };
     return Alphabet;
 }(BaseGame));
-function test() {
+function testAlphabet() {
     var alpha = new Alphabet("flbjghaemkcid");
-    alpha.solve();
+    alpha.solve(1);
     console.log(alpha.output);
 }

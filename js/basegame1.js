@@ -6,10 +6,10 @@ var BaseGame = (function () {
         this.states.push(level);
         this.moves.push("");
         this.usedstates = [];
-        this.rounds = 0;
         this.nummoves = 0;
         this.counter = 0;
         this.output = "";
+        this.movesdenominator = 2;
     }
     BaseGame.prototype.makemove = function (state, move) {
         console.log("Override makemove(), please!");
@@ -26,29 +26,35 @@ var BaseGame = (function () {
     BaseGame.prototype.display = function (state) {
         console.log("Override display(), please!");
     };
-    BaseGame.prototype.solve = function () {
+    BaseGame.prototype.solve = function (removemethod) {
         var currstate = "";
         var currmoves = "";
         var t0 = performance.now();
         var counter = 0;
         var done = false;
+        var sanity = 0;
         while (this.states.length > 0) {
-            currstate = this.states.pop();
-            currmoves = this.moves.pop();
+            if (removemethod == 1) {
+                currstate = this.states.pop();
+                currmoves = this.moves.pop();
+            }
+            if (removemethod == 2) {
+                currstate = this.states.shift();
+                currmoves = this.moves.shift();
+            }
             if (this.isfinished(currstate)) {
                 done = true;
                 break;
             }
             var newmoves = this.findmoves(currstate);
             if (newmoves.length == 0) {
-                console.log("no moves to play?");
                 continue;
             }
-            this.rounds += 1;
-            if (this.rounds % 100 == 0) {
+            sanity++;
+            if (sanity % 100 == 0) {
                 console.log("100");
             }
-            if (this.rounds == 10000) {
+            if (sanity == 1000) {
                 this.output = "something wrong with the algorithm\n\n";
                 break;
             }
@@ -73,11 +79,13 @@ var BaseGame = (function () {
             this.output = "Game finished\n\n";
             this.output += this.display(currstate) + "\n\n";
             this.output += "Moves:" + currmoves + "\n\n";
-            this.output += "# moves: " + currmoves.length / 2 + "\n\n";
+            this.output += "# moves: " + currmoves.length / this.movesdenominator + "\n\n";
             this.output += "# used states: " + this.usedstates.length + "\n\n";
         }
         else {
             this.output = "Unsolvable?\n\n";
+            this.output += this.display(currstate) + "\n\n";
+            this.output += "# used states: " + this.usedstates.length + "\n\n";
         }
         var t1 = performance.now();
         var diff = Math.round(((t1 - t0) + Number.EPSILON) * 100) / 100;
