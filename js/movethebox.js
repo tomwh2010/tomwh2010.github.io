@@ -84,38 +84,33 @@ var MoveTheBox = (function (_super) {
         if (direction == "R")
             delta = 1;
         local_state = local_state.swapStr(index + delta, index);
-        var onemoretime = 1;
-        var returnvalue = [];
+        var returnvalue = "";
+        var returnvalue2 = "";
         var sanity = 0;
-        while (onemoretime > 0) {
+        while (1) {
             if (this.isfinished(local_state)) {
-                console.log("we're done");
                 break;
             }
             sanity++;
-            if (sanity == 20) {
-                console.log("sanity_m1?!?");
+            if (sanity == 100) {
                 break;
             }
-            onemoretime = 0;
-            returnvalue = this.removecharacters(local_state);
-            onemoretime += returnvalue[0];
-            local_state = returnvalue[1].slice(0);
             returnvalue = this.gravity(local_state);
-            onemoretime += returnvalue[0];
-            local_state = returnvalue[1].slice(0);
+            returnvalue2 = this.removecharacters(returnvalue.slice(0));
+            if (returnvalue == returnvalue2) {
+                break;
+            }
+            local_state = returnvalue2.slice(0);
         }
-        return local_state;
+        return returnvalue2.slice(0);
     };
     MoveTheBox.prototype.gravity = function (state) {
         var local_state = state.slice(0);
-        var tainted = 1;
         var change = true;
         var sanity = 0;
         while (change) {
             sanity++;
             if (sanity == 10000) {
-                console.log("sanity_m2?!?");
                 break;
             }
             change = false;
@@ -123,17 +118,15 @@ var MoveTheBox = (function (_super) {
                 if (local_state[i] != "." && local_state[i + 7] == ".") {
                     local_state = local_state.swapStr(i + 7, i);
                     change = true;
-                    tainted = 1;
                 }
             }
         }
-        return [tainted, local_state];
+        return local_state;
     };
     MoveTheBox.prototype.removecharacters = function (state) {
         var local_level_o = state.slice(0);
         var local_level_h = state.slice(0);
         var local_level_v = state.slice(0);
-        var tainted = 0;
         var count = 0;
         var box = "";
         for (var y = 0; y < 9; y++) {
@@ -184,15 +177,13 @@ var MoveTheBox = (function (_super) {
         }
         for (var i = 0; i < 63; i++) {
             if (local_level_v[i] == "1") {
-                tainted = 1;
                 local_level_o = local_level_o.replaceAt(i, ".");
             }
             if (local_level_h[i] == "1") {
-                tainted = 1;
                 local_level_o = local_level_o.replaceAt(i, ".");
             }
         }
-        return [tainted, local_level_o];
+        return local_level_o;
     };
     return MoveTheBox;
 }(BaseGame));

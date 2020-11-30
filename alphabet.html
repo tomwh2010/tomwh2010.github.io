@@ -12,13 +12,28 @@
     <h1>Alphabet</h1>
     This one is for testing purposes only. It will try to sort a bunch of characters in alphabetic order in the fewest
     moves possible.<br /><br />
+    <a href="#" onclick="runSolver('abc')">Run with 3 characters; done</a><br />
+    <a href="#" onclick="runSolver('cba')">Run with 3 characters</a><br />
     <a href="#" onclick="runSolver('baecd')">Run with 5 characters</a><br />
     <a href="#" onclick="runSolver('fbgaecd')">Run with 7 characters</a><br />
     <a href="#" onclick="runSolver('fbghaecid')">Run with 9 characters</a><br />
     <a href="#" onclick="runSolver('fbjghaekcid')">Run with 11 characters</a><br />
     <a href="#" onclick="runSolver('flbjghaemkcid')">Run with 13 characters</a><br />
     <a href="index.html">Back</a><br /><br /><br />
-    <div class="code" id="outputarea"></div>
+    
+    <table border="1">
+        <tr>
+            <td valign="top">
+                <div id="outputarea" class="code">&nbsp;</div>
+            </td>
+            <td valign="top">
+                <div id="outputarea2" class="code">&nbsp;</div>
+            </td>
+            <td valign="top">
+                <div id="outputarea3" class="code">&nbsp;</div>
+            </td>
+        </tr>
+    </table>
     <script>
         var exports = {
             "__esModule": true
@@ -31,8 +46,12 @@
         function runSolver(level) {
             var alpha = new Alphabet(level);
             document.getElementById("outputarea").innerHTML = "";
+            document.getElementById("outputarea2").innerHTML = "";
+            document.getElementById("outputarea3").innerHTML = "";
             alpha.solve(1);
             document.getElementById("outputarea").innerHTML = alpha.output;
+            document.getElementById("outputarea2").innerHTML = alpha.output2;
+            document.getElementById("outputarea3").innerHTML = alpha.output3;
 
         }
     </script>
