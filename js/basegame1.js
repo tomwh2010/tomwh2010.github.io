@@ -87,7 +87,7 @@ var BaseGame = (function () {
             }
         }
         if (done) {
-            this.output = "Game finished\n\n";
+            this.output = "Game finished\n";
             this.output += this.display(donestate) + "\n\n";
             this.output2 = "Moves:" + donemoves + "\n\n";
             this.output2 += "# moves: " + donemoves.length / this.movesdenominator + "\n\n";
