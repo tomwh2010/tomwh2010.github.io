@@ -7,8 +7,8 @@ let p=null;
 function setup(){
     createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
     p=new Particle();
-    p.position.x=0;
-    p.position.y=0;
+    p.position.x=100;
+    p.position.y=100;
     p.velocity=createVector(1, 2);
 }
 
