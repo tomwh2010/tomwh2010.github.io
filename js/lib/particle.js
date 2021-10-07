@@ -3,18 +3,37 @@ class Particle {
     this.position = createVector(0, 0);
     this.acceleration = createVector(0, 0);
     this.velocity = createVector(0, 0);
-    this.size = 10;
+    this.radius = 10;
     this.fillcolor = color(255, 255, 255);
-    this.bordersize = 1;
+    this.borderthickness = 1;
     this.bordercolor = color(0, 0, 0);
+
+    this.setLeftAndTopShift(0, 0);
+  }
+
+  setLeftAndTopShift(left, top){ 
+    this.leftedge=-left;
+    this.rightedge=width-left;
+    this.topedge=-top;
+    this.bottomedge=height-top;
+
+    this.leftedgewithradius=(this.leftedge+this.radius);
+    this.rightedgewithradius=(this.rightedge-this.radius);
+    this.topedgewithradius=(this.topedge+this.radius);
+    this.bottomedgewithradius=(this.bottomedge-this.radius);
+
+    this.leftedgeoutside=(this.leftedge-this.radius);
+    this.rightedgewoutside=(this.rightedge+this.radius);
+    this.topedgeoutside=(this.topedge-this.radius);
+    this.bottomedgeoutside=(this.bottomedge+this.radius);
   }
 
   oob() {
     if (
-      this.position.x < 0 ||
-      this.position.y < 0 ||
-      this.position.x > CANVAS_WIDTH ||
-      this.position.y > CANVAS_HEIGHT
+      this.position.x < this.leftedgeoutside ||
+      this.position.y < this.topedgeoutside ||
+      this.position.x > this.rightedgewoutside ||
+      this.position.y > this.bottomedgeoutside
     ) {
       return true;
     }
@@ -22,13 +41,13 @@ class Particle {
   }
 
   reflectedges() {
-    if (this.position.x < this.size/2 || this.position.x > (CANVAS_WIDTH-this.size/2)){
+    if (this.position.x < this.leftedgewithradius || this.position.x > this.rightedgewithradius){
       //bounce horizontal
       this.velocity.x*=-1;
       this.acceleration.x*=-1;
     }
 
-    if (this.position.y < this.size/2 || this.position.y > (CANVAS_HEIGHT-this.size/2)){
+    if (this.position.y < this.topedgewithradius || this.position.y > this.bottomedgewithradius){
       //bounce vertical
       this.velocity.y*=-1;
       this.acceleration.y*=-1;
@@ -49,16 +68,16 @@ class Particle {
     return this.position;
   }
 
-  setSize(size) {
-    this.size = size;
+  setSize(radius) {
+    this.radius = radius;
   }
 
   setFillColor(fillcolor) {
     this.fillcolor = fillcolor;
   }
 
-  setBorderSize(bordersize) {
-    this.bordersize = bordersize;
+  setBorderThickness(borderthickness) {
+    this.borderthickness = borderthickness;
   }
 
   setBorderColor(bordercolor) {
@@ -69,7 +88,7 @@ class Particle {
     let d = dist(this.position.x, this.position.y, particle.position.x, particle.position.y);
     
     //touching each other
-    if (d == (this.size + particle.size) / 2) {
+    if (d == (this.radius + particle.radius) / 2) {
       return true;
     }
     
@@ -84,7 +103,7 @@ class Particle {
       return false;
     }
 
-    if (d < (this.size + particle.size) / 2) {
+    if (d < (this.radius + particle.radius) / 2) {
       return true;
     }
     
@@ -96,7 +115,7 @@ class Particle {
     let d = dist(this.position.x, this.position.y, particle.position.x, particle.position.y);
 
     //one is fully within the other
-    if (d <= abs((this.size - particle.size) / 2)) {
+    if (d <= abs((this.radius - particle.radius) / 2)) {
       return true;
     }
 
@@ -105,10 +124,11 @@ class Particle {
 
   draw() {
     push();
-    strokeWeight(this.bordersize);
+    strokeWeight(this.borderthickness);
     stroke(this.bordercolor);
     fill(this.fillcolor);
-    ellipse(this.position.x, this.position.y, this.size);
+    translate(-this.leftedge, -this.topedge);
+    ellipse(this.position.x, this.position.y, this.radius*2);
     pop();
   }
 }

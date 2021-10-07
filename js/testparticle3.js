@@ -1,20 +1,23 @@
 
 
-let CANVAS_WIDTH = 500;
-let CANVAS_HEIGHT = 500;
+let CANVAS_WIDTH = 800;
+let CANVAS_HEIGHT = 400;
 let particles=[];
+let particles_num=25;
 
 function setup(){
     createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
     //frameRate(10);
     let p=null;
 
-    for(i=0; i<10; i++){    
+    for(i=0; i<particles_num; i++){    
         p=new Particle();
-        p.position.x=random(0,CANVAS_WIDTH);
-        p.position.y=random(0,CANVAS_HEIGHT);
-        p.size=random(10,50);
+        p.position.x=0;
+        p.position.y=0;
+        p.radius=random(10,50);
+        p.borderthickness=random(1,5);
         p.velocity=createVector(random(5), random(5));
+        p.setLeftAndTopShift(width/2, height/2);
         particles.push(p);
     }
 }
