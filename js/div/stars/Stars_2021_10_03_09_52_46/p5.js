@@ -20203,7 +20203,7 @@
 
           function escape(data) {
             if (typeof data === 'string') {
-              return data.replace(/[&<>"'\/]/g, function(s) {
+              return data.replace(/[&<td>"'\/]/g, function(s) {
                 return _entityMap[s];
               });
             }
