@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>cssbattles</title>
+  </head>
+  <body>
+    <div class="a">
+</div>
+  <div id="diamond1">
+  </div>
+  <div id="diamond2">
+  </div>
+  <div class="circle">
+  </div>
+<style>
+body{background:#222730;margin:0}
+.a {
+    position: fixed;
+    width: 400;
+    height: 150;
+    top: 75;
+    background: #4CAAB3
+}
+#diamond1 {
+    width: 0;
+    height: 0;
+    border: 176px solid transparent;
+    border-bottom-color: #222730;
+    position: fixed;
+    top: -202;
+    left:24
+}
+#diamond1:after {
+    content: '';
+    position: fixed;
+    left: 24;
+    top: 150;
+    width: 0;
+    height: 0;
+    border: 176px solid transparent;
+    border-top-color: #222730;
+}
+#diamond2 {
+    width: 0;
+    height: 0;
+    border: 105px solid transparent;
+    border-bottom-color: #4CAAB3;
+    position: relative;
+    top: -60;
+    left:95
+}
+#diamond2:after {
+    content: '';
+    position: absolute;
+    left: -105;
+    top: 105;
+    width: 0;
+    height: 0;
+    border: 105px solid transparent;
+    border-top-color: #4CAAB3;
+}
+.circle {
+    position:fixed;
+    width: 50;
+    height: 50;
+    border-radius: 50%;
+    background: #393E46;
+    top: 125;
+    left:175
+} 
+</style>
+
+<!-- 
+    https://css-tricks.com/the-shapes-of-css/
+-->
+  </body>
+</html>
